@@ -1,0 +1,32 @@
+{
+  "name": "vyaguta-lms-rnr",
+  "regions": ["ap-south-1"],
+  "lambda": {
+    "role": "arn:aws:iam::509993233544:role/vyaguta-lambda-role",
+    "vpc": {
+      "subnets": ["subnet-0251ed31bbb7ba296", "subnet-009956e7a8ae8c4bd"],
+      "security_groups": ["sg-06bb4f3c160ed173c"]
+    }
+  },
+  "stages": {
+    "dev": {
+      "domain": "dev-rnr.vyaguta.lftechnology.com",
+      "zone": "vyaguta.lftechnology.com"
+    },
+    "staging": {},
+    "dirty": {
+      "hooks": {
+        "predeploy": "tools/slack_notification.py --user $(whoami) --branch $(git rev-parse --abbrev-ref HEAD) --stage dirty --commit $(git rev-parse HEAD)"
+      }
+    }
+  },
+  "cors": {
+    "enable": true,
+    "allowed_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+
+    "allowed_headers": ["*"]
+  },
+  "error_pages": {
+    "disable": true
+  }
+}

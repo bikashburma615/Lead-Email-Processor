@@ -1,0 +1,7 @@
+{
+  "profile": "team-vyaguta",
+  "region": "ap-south-1",
+  "environments": {
+    "dev": "vyaguta/lms-rnr/api/dev"
+  }
+}
