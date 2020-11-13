@@ -14,6 +14,8 @@ import {CONTENT} from 'constants/content';
 
 import {sendMail} from 'utils/email';
 
+import {readFile} from 'utils/xlsxReader';
+
 /**
  * Create a new email.
  *
@@ -56,7 +58,7 @@ export async function updateContent(req, res, next) {
     await contentService.updateByKey(content[0].createAt, actionType);
 
     if(actionType!==CONTENT.ACTION_TYPE.RELEASE){
-      await sendMail(content[0].prefinedEmail, content[0], actionType)
+      await sendMail(content[0].emailLead, content[0], actionType)
     }
 
     res.status(HttpStatus.CREATED).json({});
@@ -103,6 +105,24 @@ export async function findAll(req, res, next) {
     res.status(HttpStatus.CREATED).json({
       contents
     });
+  } catch (err) {
+    next(err);
+  }
+}
+
+/**
+ * Update email body.
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
+ */
+export async function uploadXlsxFile(req, res, next) {
+  try {
+    let contents = await readFile(req.file);
+    await contentService.createMultipleContent(contents);
+
+    res.status(HttpStatus.CREATED).json({contents});
   } catch (err) {
     next(err);
   }

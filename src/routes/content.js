@@ -4,6 +4,9 @@ import * as contentController from 'controllers/content';
 import {verifyAccessToken} from 'middlewares/tokenManager';
 import {getLoggedInUserDetails, authorizeAdminAccessOnly} from 'middlewares/getLoggedInUser';
 
+import Multer from 'multer';
+const multer = Multer();
+
 const router = Router();
 
 
@@ -43,6 +46,18 @@ router.put(
   '/:id',
   verifyAccessToken,
   contentController.updateContent
+);
+
+/**
+ * POST /api/contents/upload
+ */
+router.post(
+  '/upload',
+  verifyAccessToken,
+  getLoggedInUserDetails,
+  authorizeAdminAccessOnly,
+  multer.single('file'),
+  contentController.uploadXlsxFile
 );
 
 export default router;

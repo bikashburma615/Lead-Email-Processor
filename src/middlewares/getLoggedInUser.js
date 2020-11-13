@@ -26,7 +26,6 @@ export async function getLoggedInUserDetails(req, res, next) {
       message: 'Invalid Token'
     });
   }
-  console.log("user details ", user)
   req.currentUser = user[0];
   return next();
 };
@@ -37,7 +36,6 @@ export async function authorizeAdminAccessOnly(req, res, next) {
       .status(HttpStatus.FORBIDDEN)
       .send(HttpStatus.getStatusText(HttpStatus.FORBIDDEN));
   } else {
-    console.log("auth rize")
     return next();
   }
 };

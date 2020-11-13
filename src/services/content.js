@@ -67,7 +67,9 @@ export async function updateByKey(createAt, actionType) {
     let content = await Content.updateByKey({
       type: 'content',
       createAt: Number(new Date(createAt))
-    }, {actionType});
+    }, {
+      actionType
+    });
 
     return content.toJSON();
   } catch (err) {
@@ -120,3 +122,45 @@ export async function getAllContent() {
     throw err;
   }
 }
+
+/**
+ * Create a new user.
+ *
+ * @param {Array} contents
+ *
+ * @returns {Promise}
+ */
+export async function createMultipleContent(contents = []) {
+  try {
+    log.info(`Uploading email file.`);
+
+    let payload={};
+
+    contents.forEach(async (content, tIndex) => {
+      (async (index) => {
+				setTimeout(async () => {
+          payload = {
+            id: v1(),
+            body: content.Body,
+            date: content.Date,
+            emailLead: content.Email_lead,
+            subject: content.Subject
+          };
+          
+          // promise.push(Content.save(payload));
+          Content.save(payload);
+        }, tIndex * 1000);
+			})(tIndex);
+		})
+
+    
+    // let response = await Promise.all(promise);
+    return;
+  } catch (err) {
+    log.error(`Could not create new content: ${err}`);
+
+    throw err;
+  }
+}
+
+

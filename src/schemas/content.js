@@ -28,7 +28,12 @@ export default {
     required: true,
     maxlength: 500
   },
-  prefinedEmail: {
+  subject: {
+    type: String,
+    required: true,
+    maxlength: 500
+  },
+  emailLead: {
     type: String,
     required: true,
     maxlength: 500
