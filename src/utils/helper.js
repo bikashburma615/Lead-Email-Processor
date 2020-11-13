@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const accessTokenSecretKey = 'ABC_DEF_GHI';
