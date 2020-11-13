@@ -12,11 +12,10 @@
     "dotenv": "babel-node node_modules/.bin/dotenv",
     "seed": "yarn dotenv yarn mongo:seed",
     "prettier": "prettier --write **/*.{js,json,yml,md}",
-    "build": "babel src --copy-files --out-dir dist --source-maps",
+    "build": "rimraf dist && babel src --copy-files --out-dir dist --source-maps",
     "start:dev": "cross-env NODE_ENV=dev nodemon --watch .env --watch src --exec babel-node src --source-maps",
     "test": "cross-env NODE_ENV=test mocha --exit --recursive --require @babel/register test",
-    "test:coverage": "cross-env NODE_ENV=test nyc --require @babel/register --reporter lcov --reporter text mocha --exit --recursive test",
-    "rimraf": "./node_modules/rimraf/bin.js"
+    "test:coverage": "cross-env NODE_ENV=test nyc --require @babel/register --reporter lcov --reporter text mocha --exit --recursive test"
   },
   "husky": {
     "hooks": {
@@ -77,7 +76,26 @@
     "uuid": "^8.3.1",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.4.2",
-    "yarn": "^1.22.4"
+    "yarn": "^1.22.4",
+    "rimraf": "^3.0.2",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "chai": "^4.2.0",
+    "codecov": "^3.6.5",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-leapfrog": "^2.0.1",
+    "eslint-config-prettier": "^6.10.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "mocha": "^7.1.1",
+    "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
+    "prettier": "^2.0.1",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
