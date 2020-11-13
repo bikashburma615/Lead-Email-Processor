@@ -1,5 +1,5 @@
 {
-  "name": "@leapfrogtechnology/rnr",
+  "name": "Lead-Email",
   "version": "1.0.0",
   "description": "Nominate you heros.",
   "scripts": {
@@ -15,7 +15,8 @@
     "build": "rimraf dist && babel src --copy-files --out-dir dist --source-maps",
     "start:dev": "cross-env NODE_ENV=dev nodemon --watch .env --watch src --exec babel-node src --source-maps",
     "test": "cross-env NODE_ENV=test mocha --exit --recursive --require @babel/register test",
-    "test:coverage": "cross-env NODE_ENV=test nyc --require @babel/register --reporter lcov --reporter text mocha --exit --recursive test"
+    "test:coverage": "cross-env NODE_ENV=test nyc --require @babel/register --reporter lcov --reporter text mocha --exit --recursive test",
+    "rimraf": "./node_modules/rimraf/bin.js"
   },
   "husky": {
     "hooks": {
@@ -100,6 +101,6 @@
     "supertest": "^4.0.2"
   },
   "engines": {
-    "node": "12.9.1"
+    "node": "12.9.0"
   }
 }
