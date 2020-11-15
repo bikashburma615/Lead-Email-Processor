@@ -11,6 +11,9 @@ let MAIL_OPTION = {
 
 var transporter = nodemailer.createTransport({
   service: config.mail.MAIL_SERVICE,
+  host: 'smtp.gmail.com',
+  secure: true,
+  port: 465,
   auth: {
     user: config.mail.MAILER_EMAIL,
     pass: config.mail.MAILER_PASSWORD
