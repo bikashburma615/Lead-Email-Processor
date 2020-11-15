@@ -56,7 +56,6 @@ export async function updateContent(req, res, next) {
     }
 
     await contentService.updateByKey(content[0].createAt, actionType);
-
     if(actionType!==CONTENT.ACTION_TYPE.RELEASE){
       await sendMail(content[0].emailLead, content[0], actionType)
     }
@@ -77,6 +76,7 @@ export async function updateContent(req, res, next) {
 export async function getAvailableContent(req, res, next) {
   try {
     let contents = await contentService.getAvailableContent();
+    console.log("contents ", contents)
     if (isEmpty(contents)) {
       throw new NotFoundError(en.CONTENT.CONTENT_NOT_FOUND);
     }
@@ -119,7 +119,9 @@ export async function findAll(req, res, next) {
  */
 export async function uploadXlsxFile(req, res, next) {
   try {
+    console.log("req.file ",req.file)
     let contents = await readFile(req.file);
+    
     await contentService.createMultipleContent(contents);
 
     res.status(HttpStatus.CREATED).json({contents});

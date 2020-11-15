@@ -6,7 +6,7 @@ const config = {
     name: process.env.APP_NAME || pkg.name,
     version: process.env.APP_VERSION || pkg.version,
     description: process.env.DESCRIPTION || pkg.description,
-    port: process.env.PORT || '3000',
+    port: process.env.PORT || '8848',
     host: process.env.HOST || '0.0.0.0',
   },
 

@@ -31,6 +31,7 @@ export async function getLoggedInUserDetails(req, res, next) {
 };
 
 export async function authorizeAdminAccessOnly(req, res, next) {
+  console.log("req.file ",req.file)
   if (req.currentUser.role !== ROLE.ADMIN) {
     return res
       .status(HttpStatus.FORBIDDEN)
