@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import config from 'config';
+import smtpTransport from 'nodemailer-smtp-transport';
 
 let MAIL_OPTION = {
   from: 'lakestarmailer@gmail.com',
@@ -9,7 +10,7 @@ let MAIL_OPTION = {
   html: ''
 };
 
-var transporter = nodemailer.createTransport({
+var transporter = nodemailer.createTransport(smtpTransport({
   service: config.mail.MAIL_SERVICE,
   host: 'smtp.gmail.com',
   secure: true,
@@ -18,7 +19,7 @@ var transporter = nodemailer.createTransport({
     user: config.mail.MAILER_EMAIL,
     pass: config.mail.MAILER_PASSWORD
   }
-});
+}));
 
 export function sendMail(email, content, actionType){
   return new Promise((resolve, reject) => {
