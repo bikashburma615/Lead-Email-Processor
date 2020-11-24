@@ -28,8 +28,8 @@ import * as errorHandler from 'middlewares/errorHandler';
 Sentry.init({ dsn: config.sentry.DSN });
 
 dynamoose.aws.sdk.config.update({
-  "accessKeyId": "AKIAITVWTTUMUS74RS6A",
-  "secretAccessKey": "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",
+  "accessKeyId": "",
+  "secretAccessKey": "",
   "region": "us-east-1"
 });
 
